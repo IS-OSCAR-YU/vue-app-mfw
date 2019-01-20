@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Swipe, SwipeItem, InfiniteScroll } from 'mint-ui'
+import { Swipe, SwipeItem, InfiniteScroll, Spinner } from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import App from './App.vue'
 import router from './router'
@@ -8,6 +8,7 @@ import axios from 'axios';
 
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
+Vue.component(Spinner.name, Spinner);
 Vue.use(InfiniteScroll);
 
 // Vue.config.productionTip = false

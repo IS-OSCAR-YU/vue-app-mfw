@@ -28,10 +28,14 @@
         <!-- 推荐攻略列表 -->
         <ul v-infinite-scroll="loadMore" 
             infinite-scroll-disabled="loading" 
-            infinite-scroll-distance="10" class="raider-list">
+            infinite-scroll-distance="20" class="raider-list">
             <Raider v-for="(item, index) in RaiderListData" :key="index" :data="item"></Raider>
         </ul>
-        
+
+        <!-- spinner -->
+        <div :style="isShow" class="spinner-wrapper">
+            <mt-spinner class="spinner" type="fading-circle" color="#999"></mt-spinner>
+        </div>
     </div>
 </template>
 
@@ -143,8 +147,18 @@
             }
         }
     }
-    .raider-list {
-        padding-bottom: 0.725rem;
+    .spinner-wrapper {
+        background: #fff;
+        width: 100%;
+        height: 1.3rem;
+        position: relative;
+        .spinner {
+            margin: 0 auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
     }
 }
 </style>
@@ -160,18 +174,19 @@ export default {
     methods: {
         loadMore() {
             this.loading = true;
-
+            this.isShow = 'visibility: visible';
             this.$axios.get('/data/1.json').then(({ data }) => {
                 setTimeout(() => {
                     this.RaiderListData = this.RaiderListData.concat(data.data.list);
                     this.loading = false;
+                    this.isShow = 'visibility: hidden';
                 }, 1000);
             })
         },
     },
     data() {
         return {
-            msg: 'hello world',
+            isShow: 'visibility: hidden',
             listImgInfo: [
                 { title: '找攻略', pos: [] }, 
                 { title: '看游记', pos: [] },
