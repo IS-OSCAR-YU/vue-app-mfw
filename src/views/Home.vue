@@ -15,7 +15,7 @@
 
         <!-- 页面导航区域 -->
         <ul class="list-wrapper">
-            <router-link tag="li" v-for="(item, index) in listImgInfo" :key="index" to="/">
+            <router-link tag="li" v-for="(item, index) in listImgInfo" :key="index" :to="'/note/' + index">
                 <span>{{item.title}}</span>
             </router-link>
         </ul>
@@ -175,7 +175,7 @@ export default {
         loadMore() {
             this.loading = true;
             this.isShow = 'visibility: visible';
-            this.$axios.get('/data/1.json').then(({ data }) => {
+            this.$axios.get('/data/home.json').then(({ data }) => {
                 setTimeout(() => {
                     this.RaiderListData = this.RaiderListData.concat(data.data.list);
                     this.loading = false;

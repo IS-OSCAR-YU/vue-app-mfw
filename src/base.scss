@@ -1,0 +1,20 @@
+// px => rem
+@function rem($px, $basePxFontSize: 41.4) {
+    @return $px / $basePxFontSize * 1rem;
+}
+
+@mixin line() {
+    content: '';
+    width: rem(2);
+    height: rem(22);
+    background: #fff;
+    display: inline-block;
+}
+
+@mixin line2($w: 2, $h: 20, $c: #fff) {
+    content: '';
+    width: rem($w);
+    height: rem($h);
+    background: $c;
+    display: inline-block;
+}
